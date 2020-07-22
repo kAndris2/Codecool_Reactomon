@@ -7,7 +7,7 @@ const Pokes = ({ pokes, loading }) => {
   if (loading) {
     return <h2>Loading...</h2>;
   }
-
+  
   return (   
     <div className="container"> 
         <div className="row">
@@ -26,24 +26,21 @@ function pokemonDetails(link) {
 }
   
 function alertSuccess(title,text,buttonText){
-swal({
-    title: title,
-    text: text,
-    icon: "success",
-    button: buttonText,
-});
+    swal({
+        title: title,
+        text: text,
+        icon: "success",
+        button: buttonText,
+    });
 }
 
 
-async function getPic(pokemon){    
+function getPic(pokemon){ 
     
     let url = pokemon.url;
-    
     let id;
-    console.log(id);
-
+    id = url.split("/").slice(-2)[0];
     return "https://pokeres.bastionbot.org/images/pokemon/"+id+".png";
-    
 }
 
 export default Pokes;
