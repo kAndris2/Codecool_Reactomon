@@ -21,7 +21,7 @@ const App = () => {
     fetchPokes();
   }, []);
 
-  // Get current posts
+  // Get current pokes
   const indexOfLastPokes = currentPage * pokesPerPage;
   const indexOfFirstPokes = indexOfLastPokes - pokesPerPage;
   const currentPokes = pokes.slice(indexOfFirstPokes, indexOfLastPokes);
