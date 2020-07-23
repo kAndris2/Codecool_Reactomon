@@ -1,15 +1,40 @@
 import React from 'react';
-import { withRouter } from "react-router";
+import { withRouter, Redirect } from "react-router";
 import swal from 'sweetalert'
 
 class PokemonDetail extends React.Component {
-  modal(image,name){
+  modal(image,name,id,weight,type){
+    
+
+    const content = document.createElement("div");
+    content.className="container-fluid";
+    content.innerHTML = 
+    `<table class="table table-hover table-striped">
+        <tr>
+          <td class="font-weight-bold">ID:</td>
+          <td>${id}</td>
+        </tr>
+        <tr>
+          <td class="font-weight-bold">Weight</td>
+          <td>${weight}</td>
+        </tr>
+        <tr>
+          <td class="font-weight-bold">Type(s)</td>
+          <td>${type}</td>
+        </tr>  
+     </table>`;
     
     swal({
       icon: image,
       title: "Whos that pokemon?",
       text: "It's "+name,
       button: "Goddamn",
+      content,
+    })
+    .then((clicked) => {
+      if (clicked) {
+        // window.history.pushState("object or string", "Title", "/pokemons");
+      }
     });
   }
 
@@ -17,15 +42,7 @@ class PokemonDetail extends React.Component {
     const pokemon = this.props.pokemons.find((pokemon) => pokemon.id === parseInt(this.props.match.params.id, 10))
     return (
       <React.Fragment>
-        <h1>{pokemon.name}</h1>
-        <img src={pokemon.image_url}/>
-        <p>ID: {pokemon.id}</p>
-        <p>Weight: {pokemon.weight}</p>
-        <p>Type(s): {pokemon.types.join(', ')}</p>
-<<<<<<< HEAD
-        {this.modal(pokemon.image_url,pokemon.name)}
-=======
->>>>>>> 8e4cfd96727a8a5063da921ea829e877f992da4f
+        {this.modal(pokemon.image_url,pokemon.name,pokemon.id,pokemon.weight,pokemon.types.join(', '))}
       </React.Fragment>
     );
   }

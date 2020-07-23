@@ -27,7 +27,8 @@ class PokemonList extends React.Component {
         </td>
         <td className="text-center">
           <Link to={`/pokemons/${pokemon.id}`}>
-            <img className="img-fluid" src={pokemon.image_url}/>
+            {/* <img className="img-fluid" src={pokemon.image_url}/> */}
+            Details
           </Link>
         </td>
       </tr>

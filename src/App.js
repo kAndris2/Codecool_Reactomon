@@ -21,7 +21,7 @@ class App extends React.Component {
       loaded: false,
       offset: 0,
       pokemons: [],
-      pokesPerPage: 20,
+      pokesPerPage: 15,
       currentPage: 1,
 
     }
