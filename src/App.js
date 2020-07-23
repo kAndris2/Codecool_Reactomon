@@ -41,10 +41,17 @@ class App extends React.Component {
   }
 
   toPokemon(response) {
+    let typeList = [];
+    response.data.types.forEach(slot => {
+      typeList.push(slot.type.name);
+    });
+
     return {
       id: response.data.id,
       name: response.data.name,
       image_url: response.data.sprites.front_default,
+      weight: response.data.weight,
+      types: typeList
     };
   }
 

@@ -8,6 +8,9 @@ class PokemonDetail extends React.Component {
       <React.Fragment>
         <h1>{pokemon.name}</h1>
         <img src={pokemon.image_url}/>
+        <p>ID: {pokemon.id}</p>
+        <p>Weight: {pokemon.weight}</p>
+        <p>Type(s): {pokemon.types.join(', ')}</p>
       </React.Fragment>
     );
   }
