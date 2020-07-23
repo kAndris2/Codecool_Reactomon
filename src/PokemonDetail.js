@@ -22,7 +22,10 @@ class PokemonDetail extends React.Component {
         <p>ID: {pokemon.id}</p>
         <p>Weight: {pokemon.weight}</p>
         <p>Type(s): {pokemon.types.join(', ')}</p>
+<<<<<<< HEAD
         {this.modal(pokemon.image_url,pokemon.name)}
+=======
+>>>>>>> 8e4cfd96727a8a5063da921ea829e877f992da4f
       </React.Fragment>
     );
   }
