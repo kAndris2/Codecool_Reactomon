@@ -1,11 +1,10 @@
 import React from 'react';
 import { withRouter, Redirect } from "react-router";
 import swal from 'sweetalert'
+import {Route} from 'react-router-dom';
 
 class PokemonDetail extends React.Component {
   modal(image,name,id,weight,type){
-    
-
     const content = document.createElement("div");
     content.className="container-fluid";
     content.innerHTML = 

@@ -11,8 +11,6 @@ import PokemonList from './PokemonList';
 import TypeList from './TypeList';
 import PokemonDetail from './PokemonDetail';
 import Pagination from './Pagination';
-import ProgressBar from 'react-bootstrap/ProgressBar'
-import swal from 'sweetalert';
 
 class App extends React.Component {
   constructor(props) {
@@ -84,11 +82,11 @@ class App extends React.Component {
           <Router>
           <ul className="nav nav-tabs" id="myTab" role="tablist">
             <li className="nav-item">
-              <a className="nav-link active h3" id="pokemons-tab" data-toggle="tab" href="#pokemons" role="tab" aria-controls="pokemons" aria-selected="true">Pokemons</a>
+              <a className="nav-link active h4" id="pokemons-tab" data-toggle="tab" href="#pokemons" role="tab" aria-controls="pokemons" aria-selected="true">Pokemons</a>
             </li>
 
             <li className="nav-item">
-              <a className="nav-link h3" id="types-tab" data-toggle="tab" href="#types" role="tab" aria-controls="types" aria-selected="false">Types</a>
+              <a className="nav-link h4" id="types-tab" data-toggle="tab" href="#types" role="tab" aria-controls="types" aria-selected="false">Types</a>
             </li>
           </ul>
           <div className="tab-content" id="myTabContent">
