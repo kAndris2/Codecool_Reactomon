@@ -3,30 +3,34 @@ import { Link } from "react-router-dom";
 
 class PokemonList extends React.Component {
   render() {
-    const prevButton = this.props.offset === 0
-      ? <React.Fragment/>
-      : <button onClick={this.props.getPrev20}>Prev 20</button>;
     return (
       <React.Fragment>
-        <h1>Pokemons</h1>
-        <ul>
-          {/* {console.log(this.props.pokemons)} */}
-          {this.props.pokemons.map(this.mapPokemonToListItem)}
-        </ul>
-        {prevButton}
-        <button onClick={this.props.getNext20}>Next 20</button>
+        <table className="table table-hover table-bordered table-striped">
+          <tbody>
+            <tr>
+                <th className="text-center">Name</th>
+                <th className="text-center">Details</th>
+            </tr>
+            {this.props.pokemons.map(this.mapPokemonToTableRow)}
+          </tbody>
+        </table>
+          
       </React.Fragment>
     );
   }
 
-  mapPokemonToListItem(pokemon) {
+  mapPokemonToTableRow(pokemon) {
     return (
-      <li key={pokemon.url}>
-        <Link to={`/pokemons/${pokemon.id}`}>
-          <img src={pokemon.image_url}/>
+      <tr key={pokemon.id} className="list">
+        <td className="text-center">
           {pokemon.name}
-        </Link>
-      </li>
+        </td>
+        <td className="text-center">
+          <Link to={`/pokemons/${pokemon.id}`}>
+            <img className="img-fluid" src={pokemon.image_url}/>
+          </Link>
+        </td>
+      </tr>
     )
   }
 }

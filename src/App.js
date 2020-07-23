@@ -11,6 +11,8 @@ import PokemonList from './PokemonList';
 import TypeList from './TypeList';
 import PokemonDetail from './PokemonDetail';
 import Pagination from './Pagination';
+import ProgressBar from 'react-bootstrap/ProgressBar'
+import swal from 'sweetalert';
 
 class App extends React.Component {
   constructor(props) {
@@ -26,18 +28,9 @@ class App extends React.Component {
 
     this.handlePokemonListResponse = this.handlePokemonListResponse.bind(this);
     this.handlePokemonDetailsResponse = this.handlePokemonDetailsResponse.bind(this);
-    this.handleGetPrev20 = this.handleGetPrev20.bind(this);
-    this.handleGetNext20 = this.handleGetNext20.bind(this);
     this.fetchPokemons = this.fetchPokemons.bind(this);
 
     
-  }
-  //teszt
-  getStuff(){
-    // const indexOfLastPokes = this.state.currentPage * this.state.pokesPerPage;
-    // const indexOfFirstPokes = indexOfLastPokes - this.state.pokesPerPage;
-    // const currentPokes = this.state.pokemons.slice(indexOfFirstPokes, indexOfLastPokes);
-    //return "asd";
   }
 
   toPokemon(response) {
@@ -64,18 +57,6 @@ class App extends React.Component {
     this.fetchPokemons(0);
   }
 
-  handleGetNext20() {
-    const offset = this.state.offset + 20;
-    this.fetchPokemons(offset);
-    this.setState({offset});
-  }
-
-  handleGetPrev20() {
-    const offset = this.state.offset - 20;
-    this.fetchPokemons(offset);
-    this.setState({offset});
-  }
-
   fetchPokemons(offset) {
     axios.get(`https://pokeapi.co/api/v2/pokemon?limit=200`).then(this.handlePokemonListResponse)
   }
@@ -92,39 +73,47 @@ class App extends React.Component {
       const indexOfFirstPokes = indexOfLastPokes - this.state.pokesPerPage;
       const currentPokes = this.state.pokemons.slice(indexOfFirstPokes, indexOfLastPokes);
       return (
-        <Router>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/pokemons">Pokemons</Link>
-              </li>
-              <li>
-                <Link to="/types">Types</Link>
-              </li>
-            </ul>
-          </nav>
-          <Switch>
-            <Redirect exact from="/" to="/pokemons" />
-            <Route exact path="/pokemons">
-              <PokemonList offset={this.state.offset}
-                           pokemons={currentPokes}
-                           getPrev20={this.handleGetPrev20}
-                           getNext20={this.handleGetNext20}/>
+        <div className="container">
+          <Router>
+          <ul className="nav nav-tabs" id="myTab" role="tablist">
+            <li className="nav-item">
+              <a className="nav-link active h3" id="pokemons-tab" data-toggle="tab" href="#pokemons" role="tab" aria-controls="pokemons" aria-selected="true">Pokemons</a>
+            </li>
+
+            <li className="nav-item">
+              <a className="nav-link h3" id="types-tab" data-toggle="tab" href="#types" role="tab" aria-controls="types" aria-selected="false">Types</a>
+            </li>
+          </ul>
+          <div className="tab-content" id="myTabContent">
+            <div className="tab-pane fade show active" id="pokemons" role="tabpanel" aria-labelledby="pokemons-tab">
+              <PokemonList pokemons={currentPokes}/>
               <Pagination
                 pokesPerPage={this.state.pokesPerPage}
                 totalPokes={this.state.pokemons.length}
                 paginate={paginate}
               />
-            </Route>
-            <Route exact path="/types">
+              <Route path="/pokemons/:id" children={<PokemonDetail pokemons={this.state.pokemons}/>} />
+            </div>
+
+            <div className="tab-pane fade" id="types" role="tabpanel" aria-labelledby="types-tab">
               <TypeList />
-            </Route>
-            <Route path="/pokemons/:id" children={<PokemonDetail pokemons={this.state.pokemons}/>} />
-          </Switch>
-        </Router>
+            </div>
+          </div>
+            <Switch>
+              <Redirect exact from="/" to="/pokemons" />
+              <Route exact path="/pokemons">
+                
+              </Route>
+              <Route exact path="/types">
+                
+              </Route>
+              
+            </Switch>
+          </Router>
+        </div>
       );
     } else {
-      return <h1>Loading...</h1>
+      return <h1>Tőtök</h1>
     }
   }
 }
