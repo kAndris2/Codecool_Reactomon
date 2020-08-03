@@ -80,39 +80,42 @@ class App extends React.Component {
       return (
         <div className="container">
           <Router>
-          <ul className="nav nav-tabs" id="myTab" role="tablist">
-            <li className="nav-item">
-              <a className="nav-link active h4" id="pokemons-tab" data-toggle="tab" href="#pokemons" role="tab" aria-controls="pokemons" aria-selected="true">Pokemons</a>
-            </li>
+            <ul className="nav nav-tabs" id="myTab" role="tablist">
+              <li className="nav-item">
+                <a className="nav-link active h4" id="pokemons-tab" data-toggle="tab" href="#pokemons" role="tab" aria-controls="pokemons" aria-selected="true">Pokemons</a>
+              </li>
 
-            <li className="nav-item">
-              <a className="nav-link h4" id="types-tab" data-toggle="tab" href="#types" role="tab" aria-controls="types" aria-selected="false">Types</a>
-            </li>
-          </ul>
-          <div className="tab-content" id="myTabContent">
-            <div className="tab-pane fade show active" id="pokemons" role="tabpanel" aria-labelledby="pokemons-tab">
-              <PokemonList pokemons={currentPokes}/>
-              <Pagination
-                pokesPerPage={this.state.pokesPerPage}
-                totalPokes={this.state.pokemons.length}
-                paginate={paginate}
-              />
-              <Route path="/pokemons/:id" children={<PokemonDetail pokemons={this.state.pokemons}/>} />
-            </div>
+              <li className="nav-item">
+                <a className="nav-link h4" id="types-tab" data-toggle="tab" href="#types" role="tab" aria-controls="types" aria-selected="false">Types</a>
+              </li>
+            </ul>
 
-            <div className="tab-pane fade" id="types" role="tabpanel" aria-labelledby="types-tab">
-              <TypeList />
-            </div>
-          </div>
             <Switch>
               <Redirect exact from="/" to="/pokemons" />
+
               <Route exact path="/pokemons">
-                
+                <div className="tab-content" id="myTabContent">
+                  <div className="tab-pane fade show active" id="pokemons" role="tabpanel" aria-labelledby="pokemons-tab">
+                    <PokemonList pokemons={currentPokes}/>
+                    <Pagination
+                      pokesPerPage={this.state.pokesPerPage}
+                      totalPokes={this.state.pokemons.length}
+                      paginate={paginate}
+                    />
+                  </div>
+
+                  <div className="tab-pane fade" id="types" role="tabpanel" aria-labelledby="types-tab">
+                    <TypeList />
+                  </div>
+                </div>
               </Route>
+
               <Route exact path="/types">
-                
+                <TypeList />
               </Route>
-              
+
+              <Route path="/pokemons/:id" children={<PokemonDetail pokemons={this.state.pokemons}/>} />
+
             </Switch>
           </Router>
         </div>
