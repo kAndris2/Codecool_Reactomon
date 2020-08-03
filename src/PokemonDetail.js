@@ -1,11 +1,10 @@
 import React from 'react';
 import { withRouter, Redirect } from "react-router";
 import swal from 'sweetalert'
-import {Route} from 'react-router-dom';
 
 class PokemonDetail extends React.Component {
   modal(image,name,id,weight,type){
-    const content = document.createElement("div");
+    const content = document.getElementById("pokediv");
     content.className="container-fluid";
     content.innerHTML = 
     `<table class="table table-hover table-striped">
@@ -28,17 +27,19 @@ class PokemonDetail extends React.Component {
       title: "Whos that pokemon?",
       text: "It's "+name,
       button: "Goddamn",
+      closeOnClickOutside: false,
       content,
     })
     .then((clicked) => {
       if (clicked) {
-        // window.history.pushState("object or string", "Title", "/pokemons");
+       //alert("anyád");
       }
     });
   }
 
   render() {
     const pokemon = this.props.pokemons.find((pokemon) => pokemon.id === parseInt(this.props.match.params.id, 10))
+    console.log(this.props);
     return (
       <React.Fragment>
         {this.modal(pokemon.image_url,pokemon.name,pokemon.id,pokemon.weight,pokemon.types.join(', '))}

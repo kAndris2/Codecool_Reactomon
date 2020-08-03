@@ -8,7 +8,7 @@ const Pagination = ({ pokesPerPage, totalPokes, paginate }) => {
   }
 
   return (
-    <nav>
+    <nav id="pagenav" className="d-flex justify-content-center">
       <ul className='pagination'>
         <li className="page-item">
             <a className="page-link" href="#" aria-label="Previous">
@@ -31,6 +31,7 @@ const Pagination = ({ pokesPerPage, totalPokes, paginate }) => {
         </li>
       </ul>
     </nav>
+    
   );
 };
 

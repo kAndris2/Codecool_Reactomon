@@ -14,7 +14,7 @@ class PokemonList extends React.Component {
             {this.props.pokemons.map(this.mapPokemonToTableRow)}
           </tbody>
         </table>
-          
+
       </React.Fragment>
     );
   }
@@ -23,7 +23,7 @@ class PokemonList extends React.Component {
     return (
       <tr key={pokemon.id} className="list">
         <td className="text-center">
-          {pokemon.name}
+          {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
         </td>
         <td className="text-center">
           <Link to={`/pokemons/${pokemon.id}`}>

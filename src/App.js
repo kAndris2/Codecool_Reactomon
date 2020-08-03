@@ -63,7 +63,7 @@ class App extends React.Component {
   }
 
   fetchPokemons(offset) {
-    axios.get(`https://pokeapi.co/api/v2/pokemon?limit=200`).then(this.handlePokemonListResponse)
+    axios.get(`https://pokeapi.co/api/v2/pokemon?limit=300`).then(this.handlePokemonListResponse)
   }
 
   setCurrentPage(number){
@@ -91,6 +91,7 @@ class App extends React.Component {
           </ul>
           <div className="tab-content" id="myTabContent">
             <div className="tab-pane fade show active" id="pokemons" role="tabpanel" aria-labelledby="pokemons-tab">
+              <div id="pokediv"></div>
               <PokemonList pokemons={currentPokes}/>
               <Pagination
                 pokesPerPage={this.state.pokesPerPage}
