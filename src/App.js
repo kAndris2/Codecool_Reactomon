@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import {
   BrowserRouter as Router,
@@ -11,6 +11,9 @@ import PokemonList from './PokemonList';
 import TypeList from './TypeList';
 import PokemonDetail from './PokemonDetail';
 import Pagination from './Pagination';
+import { ThemeProvider } from 'styled-components';
+import { lightTheme, darkTheme } from './theme';
+import { GlobalStyles } from './global';
 
 class App extends React.Component {
   constructor(props) {
@@ -21,14 +24,17 @@ class App extends React.Component {
       pokemons: [],
       pokesPerPage: 15,
       currentPage: 1,
-
+      theme: 'light'
     }
 
     this.handlePokemonListResponse = this.handlePokemonListResponse.bind(this);
     this.handlePokemonDetailsResponse = this.handlePokemonDetailsResponse.bind(this);
     this.fetchPokemons = this.fetchPokemons.bind(this);
+    this.toggleTheme = this.toggleTheme.bind(this);
+  }
 
-    
+  toggleTheme() {
+    this.state.theme === 'light' ? this.setState({theme: 'dark'}) : this.setState({theme: 'light'});
   }
 
   toPokemon(response) {
@@ -77,6 +83,7 @@ class App extends React.Component {
       const indexOfLastPokes = this.state.currentPage * this.state.pokesPerPage;
       const indexOfFirstPokes = indexOfLastPokes - this.state.pokesPerPage;
       const currentPokes = this.state.pokemons.slice(indexOfFirstPokes, indexOfLastPokes);
+
       return (
         <div className="container">
           <Router>
@@ -92,6 +99,15 @@ class App extends React.Component {
                   <Link to="/types">Types</Link>
                 </a>
               </li>
+
+              <ThemeProvider theme={this.state.theme === 'light' ? lightTheme : darkTheme}>
+                <>
+                  <GlobalStyles />
+                  <button onClick={this.toggleTheme}>Toggle theme</button>
+                  <footer>
+                  </footer>
+                </>
+              </ThemeProvider>
             </ul>
 
             <Switch>
