@@ -82,11 +82,15 @@ class App extends React.Component {
           <Router>
             <ul className="nav nav-tabs" id="myTab" role="tablist">
               <li className="nav-item">
-                <a className="nav-link active h4" id="pokemons-tab" data-toggle="tab" href="#pokemons" role="tab" aria-controls="pokemons" aria-selected="true">Pokemons</a>
+                <a className="nav-link active h4" id="pokemons-tab" aria-selected="true">
+                  <Link to="/pokemons">Pokemons</Link>
+                </a>
               </li>
 
               <li className="nav-item">
-                <a className="nav-link h4" id="types-tab" data-toggle="tab" href="#types" role="tab" aria-controls="types" aria-selected="false">Types</a>
+                <a className="nav-link h4" id="types-tab" aria-selected="false">
+                  <Link to="/types">Types</Link>
+                </a>
               </li>
             </ul>
 
