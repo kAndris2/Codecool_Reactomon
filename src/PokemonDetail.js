@@ -32,6 +32,7 @@ class PokemonDetail extends React.Component {
 
           </table>
         </div>
+        <Link to="/">Back</Link>
       </>
     );
   }
