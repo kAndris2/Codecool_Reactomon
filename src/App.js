@@ -152,6 +152,25 @@ class App extends React.Component {
 
             </Switch>
           </Router>
+
+          <video
+            autoPlay={true} 
+            loop={true}
+            muted
+            style={{
+              position: "absolute",
+              width: "100%",
+              left: "50%",
+              top: "50%",
+              height: "100%",
+              objectFit: "cover",
+              transform: "translate(-50%, -50%)",
+              zIndex: "-1"
+            }}
+          >
+            <source src="https://r2---sn-c0q7lnsl.googlevideo.com/videoplayback?expire=1596561008&ei=EEIpX-qANoT5yQX0kI6oBQ&ip=2a06:c006:35a9:a4ff:22bd:661e:5f75:b4fa&id=o-AJv4thrydxyTTlT1kwG6PN48QHtesjic7a7kVEGwJNjD&itag=18&source=youtube&requiressl=yes&vprv=1&mime=video/mp4&gir=yes&clen=4608324&ratebypass=yes&dur=60.209&lmt=1575871229256498&fvip=18&fexp=23883098&c=WEB&txp=5431432&sparams=expire,ei,ip,id,itag,source,requiressl,vprv,mime,gir,clen,ratebypass,dur,lmt&sig=AOq0QJ8wRAIgBlfjivEqm_0ef35ZdV0xieTovR6aW7EQCvMd4xfVPtMCIB3pbCYjj_YELB5Ye75ufgp2SExqkGOmuq1NAPBaOvHP&title=Pok%C3%A9mon%20Season%201:%20Indigo%20-VideoIndirelim.com&rm=sn-4pvgq-n8vs7d,sn-n8vrser&req_id=92123e29e91fa3ee&redirect_counter=2&cms_redirect=yes&ipbypass=yes&mh=o6&mip=2001:4c4e:1a14:bad:191c:4f8b:507f:f142&mm=29&mn=sn-c0q7lnsl&ms=rdu&mt=1596539286&mv=m&mvi=3&pl=30&lsparams=ipbypass,mh,mip,mm,mn,ms,mv,mvi,pl&lsig=AG3C_xAwRQIgWBsn-zW3evhhAhWNPhUbbDdm05l5iLEpfo5-lcBbq7kCIQCKvl2GOEQk0jjCMxrKrOvs3btxj9N4fQvSBzyKXeiyqQ%3D%3D&ir=1&rr=12" />
+          </video>
+
         </div>
       );
     } else {
