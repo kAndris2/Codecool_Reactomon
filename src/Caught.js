@@ -16,7 +16,7 @@ class Caught extends React.Component {
     render () {
         return (
             <>
-                {this.props.pokemons.map(this.mapCaughtPokemons)}
+                {this.props.pokemons.length >= 1 ? this.props.pokemons.map(this.mapCaughtPokemons) : <h6>You haven't caught a pokemon yet!</h6>}
             </>
         );
     }
