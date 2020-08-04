@@ -10,6 +10,7 @@ import {
 import PokemonList from './PokemonList';
 import TypeList from './TypeList';
 import PokemonDetail from './PokemonDetail';
+import Caught from './Caught';
 import Pagination from './Pagination';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './theme';
@@ -24,7 +25,8 @@ class App extends React.Component {
       pokemons: [],
       pokesPerPage: 15,
       currentPage: 1,
-      theme: 'light'
+      theme: 'light',
+      caught: []
     }
 
     this.handlePokemonListResponse = this.handlePokemonListResponse.bind(this);
@@ -88,6 +90,7 @@ class App extends React.Component {
         <div className="container">
           <Router>
             <ul className="nav nav-tabs" id="myTab" role="tablist">
+
               <li className="nav-item">
                 <a className="nav-link active h4" id="pokemons-tab" aria-selected="true">
                   <Link to="/pokemons">Pokemons</Link>
@@ -100,6 +103,12 @@ class App extends React.Component {
                 </a>
               </li>
 
+              <li className="nav-item">
+                <a className="nav-link h4" id="types-tab" aria-selected="false">
+                  <Link to="/caught">Caught</Link>
+                </a>
+              </li>
+
               <ThemeProvider theme={this.state.theme === 'light' ? lightTheme : darkTheme}>
                 <>
                   <GlobalStyles />
@@ -108,6 +117,7 @@ class App extends React.Component {
                   </footer>
                 </>
               </ThemeProvider>
+
             </ul>
 
             <Switch>
@@ -116,7 +126,7 @@ class App extends React.Component {
               <Route exact path="/pokemons">
                 <div className="tab-content" id="myTabContent">
                   <div className="tab-pane fade show active" id="pokemons" role="tabpanel" aria-labelledby="pokemons-tab">
-                    <PokemonList pokemons={currentPokes}/>
+                    <PokemonList pokemons={currentPokes} caught={this.state.caught}/>
                     <Pagination
                       pokesPerPage={this.state.pokesPerPage}
                       totalPokes={this.state.pokemons.length}
@@ -132,6 +142,10 @@ class App extends React.Component {
 
               <Route exact path="/types">
                 <TypeList />
+              </Route>
+
+              <Route exact path="/caught">
+                <Caught pokemons={this.state.caught} />
               </Route>
 
               <Route path="/pokemons/:id" children={<PokemonDetail pokemons={this.state.pokemons}/>} />

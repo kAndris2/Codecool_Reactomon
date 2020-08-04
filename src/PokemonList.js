@@ -2,30 +2,55 @@ import React from 'react';
 import { Link } from "react-router-dom";
 
 class PokemonList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.mapPokemonToTableRow = this.mapPokemonToTableRow.bind(this);
+    this.catchPokemon = this.catchPokemon.bind(this);
+  }
+
+  catchPokemon(pokemon) {
+    //const pokemon = this.props.pokemons.find((pokemon) => pokemon.id === parseInt(this.props.match.params.id, 10));
+    this.props.caught.push(pokemon);
+  }
+
   render() {
     return (
       <React.Fragment>
-        <div className="card-group">
-          {this.props.pokemons.map(this.mapPokemonToTableRow)}
-        </div>
-       
+        <table className="table table-hover table-bordered table-striped">
+          <tbody>
+            <tr>
+                <th className="text-center">Name</th>
+                <th className="text-center">Details</th>
+                <th className="text-center">Catch</th>
+            </tr>
+            {this.props.pokemons.map(this.mapPokemonToTableRow)}
+          </tbody>
+        </table>
+          
       </React.Fragment>
     );
   }
 
   mapPokemonToTableRow(pokemon) {
     return (
-      <div key={pokemon.id} className="card">
-        <img className="card-img-top" src={pokemon.image_url} alt="Card image cap"></img>
-        <div className="card-body">
-          <h5 className="card-title">{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h5>
-          <p className="card-text"><Link to={`/pokemons/${pokemon.id}`}>
-            {/* <img className="img-fluid" src={pokemon.image_url}/> */}
+      <tr key={pokemon.id} className="list">
+
+        <td className="text-center">
+          {pokemon.name}
+        </td>
+
+        <td className="text-center">
+          <Link to={`/pokemons/${pokemon.id}`}>
             Details
-          </Link></p>
-        </div>
-      </div>
-      
+          </Link>
+        </td>
+
+        <td className="text-center">
+          <button onClick={() => this.catchPokemon(pokemon)}>Catch em!</button>
+        </td>
+
+      </tr>
     )
   }
 }
