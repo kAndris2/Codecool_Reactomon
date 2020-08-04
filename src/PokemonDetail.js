@@ -3,7 +3,7 @@ import { withRouter, Redirect } from "react-router";
 import swal from 'sweetalert'
 import {Route} from 'react-router-dom';
 import { Link } from "react-router-dom";
-import {lightDiv, darkDiv} from './theme';
+import {lightDiv, darkDiv, lightTable, darkTable} from './theme';
 
 class PokemonDetail extends React.Component {
   constructor(props) {
@@ -46,7 +46,7 @@ class PokemonDetail extends React.Component {
           {this.caughtPokemon(pokemon) == true ? <h6>You are already own this pokemon!</h6> : 
           <button onClick={() => this.catchPokemon(pokemon)}>Catch!</button>}
 
-          <table class="table table-hover table-striped">
+          <table class="table table-hover table-striped" style={this.props.theme == 'light' ? lightTable : darkTable}>
 
             <tr>
               <td class="font-weight-bold">ID:</td>
