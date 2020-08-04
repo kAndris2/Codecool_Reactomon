@@ -1,16 +1,20 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { Card } from 'react-bootstrap';
 
 class PokemonList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 0
+      count: 0,
+      newArr: [],
+      totve: false,
     }
 
     this.mapPokemonToTableRow = this.mapPokemonToTableRow.bind(this);
     this.catchPokemon = this.catchPokemon.bind(this);
     this.catchPokemon = this.catchPokemon.bind(this);
+    
   }
 
   catchPokemon(pokemon) {
@@ -19,47 +23,62 @@ class PokemonList extends React.Component {
     this.props.caught.push(pokemon);
   }
 
+  getRows(pokemonsperrow){
+    let items = this.props.pokemons;
+    let n = pokemonsperrow //popkes per row
+
+    let result = new Array(Math.ceil(items.length / n))
+    .fill()
+    .map(_ => items.splice(0, n));
+
+    this.setState({newArr: result,totve:true});
+  }
+
+  componentDidMount(){
+    this.getRows(5);
+  }
   caughtPokemon(pokemon) {
     return this.props.caught.includes(pokemon);
   }
 
   render() {
-    return (
-      <React.Fragment>
-        <table className="table table-hover table-bordered table-striped">
-          <tbody>
-            <tr>
-                <th className="text-center">Name</th>
-                <th className="text-center">Details</th>
-                <th className="text-center">Catch</th>
-            </tr>
-            {this.props.pokemons.map(this.mapPokemonToTableRow)}
-          </tbody>
-        </table>
-          
-      </React.Fragment>
-    );
+   
+    
+    if (this.state.totve){
+      
+      return (
+        <React.Fragment>
+          <div className="card-deck">
+            {this.state.newArr[0].map(this.mapPokemonToTableRow)}
+          </div>
+          <div className="card-deck">
+            {this.state.newArr[1].map(this.mapPokemonToTableRow)}
+          </div>
+          <div className="card-deck">
+            {this.state.newArr[2].map(this.mapPokemonToTableRow)}
+          </div>
+        </React.Fragment>
+      );
+    }
+    else {
+      return <h1>Tőtök</h1>
+    }
   }
 
   mapPokemonToTableRow(pokemon) {
     return (
-      <tr key={pokemon.id} className="list">
-
-        <td className="text-center">
-          {pokemon.name}
-        </td>
-
-        <td className="text-center">
-          <Link to={`/pokemons/${pokemon.id}`}>
-            Details
-          </Link>
-        </td>
-
-        <td className="text-center">
-          {this.caughtPokemon(pokemon) == true ? <h6>Caught!</h6> : <button onClick={() => this.catchPokemon(pokemon)}>Catch!</button>}
-        </td>
-
-      </tr>
+    
+      <div className="card" key={pokemon.id}>
+        <img className="card-img-top" src={`${pokemon.image_url}`} alt="Card image cap"></img>
+          <div className="card-body">
+            {pokemon.name}
+        
+            <Link to={`/pokemons/${pokemon.id}`}>
+              Details
+            </Link>
+            {this.caughtPokemon(pokemon) == true ? <h6>Caught!</h6> : <button onClick={() => this.catchPokemon(pokemon)}>Catch!</button>}
+          </div>
+      </div>
     )
   }
 }
