@@ -32,6 +32,7 @@ class PokemonDetail extends React.Component {
 
   render() {
     const pokemon = this.props.pokemons.find((pokemon) => pokemon.id === parseInt(this.props.match.params.id, 10))
+    console.log(this.props);
     return (
       <>
         {this.state.count >= 1 ? 

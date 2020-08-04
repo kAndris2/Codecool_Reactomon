@@ -71,7 +71,7 @@ class App extends React.Component {
   }
 
   fetchPokemons(offset) {
-    axios.get(`https://pokeapi.co/api/v2/pokemon?limit=200`).then(this.handlePokemonListResponse)
+    axios.get(`https://pokeapi.co/api/v2/pokemon?limit=300`).then(this.handlePokemonListResponse)
   }
 
   setCurrentPage(number){
