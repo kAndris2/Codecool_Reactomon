@@ -11,3 +11,13 @@ export const darkTheme = {
   toggleBorder: '#6B8096',
   gradient: 'linear-gradient(#091236, #1E215D)',
 }
+
+export const lightDiv = {
+  backgroundColor: '#ffffff',
+  opacity: '0.9',
+}
+
+export const darkDiv = {
+  backgroundColor: '#000000',
+  opacity: '0.9',
+}

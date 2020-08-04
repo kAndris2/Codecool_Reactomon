@@ -3,6 +3,7 @@ import { withRouter, Redirect } from "react-router";
 import swal from 'sweetalert'
 import {Route} from 'react-router-dom';
 import { Link } from "react-router-dom";
+import {lightDiv, darkDiv} from './theme';
 
 class PokemonDetail extends React.Component {
   constructor(props) {
@@ -39,7 +40,7 @@ class PokemonDetail extends React.Component {
         <video id="myVid" onEnded={() => this.removeVideo("myVid")} autoPlay={true} loop={false} src="https://thumbs.gfycat.com/IlliterateDistinctBass-mobile.mp4"></video>
         : undefined}
 
-        <div className="container-fluid">
+        <div className="container-fluid" style={this.props.theme == 'light' ? lightDiv : darkDiv}>
           <img src={pokemon.image_url} />
           <h1>{pokemon.name}</h1>
           {this.caughtPokemon(pokemon) == true ? <h6>You are already own this pokemon!</h6> : 

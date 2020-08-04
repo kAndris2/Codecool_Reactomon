@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { Card } from 'react-bootstrap';
+import {lightDiv, darkDiv} from './theme';
 
 class PokemonList extends React.Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class PokemonList extends React.Component {
       count: 0,
       newArr: [],
       totve: false,
+      thm: this.props.theme
     }
 
     this.mapPokemonToTableRow = this.mapPokemonToTableRow.bind(this);
@@ -68,14 +70,17 @@ class PokemonList extends React.Component {
   mapPokemonToTableRow(pokemon) {
     return (
     
-      <div className="card" key={pokemon.id}>
+      <div className="card" key={pokemon.id} style={this.props.theme == 'light' ? lightDiv : darkDiv}>
         <img className="card-img-top" src={`${pokemon.image_url}`} alt="Card image cap"></img>
           <div className="card-body">
             {pokemon.name}
         
-            <Link to={`/pokemons/${pokemon.id}`}>
-              Details
-            </Link>
+            <p>
+              <Link to={`/pokemons/${pokemon.id}`}>
+                Details
+              </Link>
+            </p>
+
             {this.caughtPokemon(pokemon) == true ? <h6>Caught!</h6> : <button onClick={() => this.catchPokemon(pokemon)}>Catch!</button>}
           </div>
       </div>

@@ -126,7 +126,11 @@ class App extends React.Component {
               <Route exact path="/pokemons">
                 <div className="tab-content" id="myTabContent">
                   <div className="tab-pane fade show active" id="pokemons" role="tabpanel" aria-labelledby="pokemons-tab">
-                    <PokemonList pokemons={currentPokes} caught={this.state.caught}/>
+                    <PokemonList 
+                      pokemons={currentPokes} 
+                      caught={this.state.caught}
+                      theme={this.state.theme}
+                    />
                     <Pagination
                       pokesPerPage={this.state.pokesPerPage}
                       totalPokes={this.state.pokemons.length}
@@ -141,14 +145,14 @@ class App extends React.Component {
               </Route>
 
               <Route exact path="/types">
-                <TypeList />
+                <TypeList theme={this.state.theme}/>
               </Route>
 
               <Route exact path="/caught">
                 <Caught pokemons={this.state.caught} />
               </Route>
 
-              <Route path="/pokemons/:id" children={<PokemonDetail pokemons={this.state.pokemons} caught={this.state.caught}/>} />
+              <Route path="/pokemons/:id" children={<PokemonDetail pokemons={this.state.pokemons} caught={this.state.caught} theme={this.state.theme}/>} />
 
             </Switch>
           </Router>
@@ -162,7 +166,7 @@ class App extends React.Component {
               width: "100%",
               left: "50%",
               top: "50%",
-              height: "100%",
+              height: "110%",
               objectFit: "cover",
               transform: "translate(-50%, -50%)",
               zIndex: "-1"
@@ -174,7 +178,11 @@ class App extends React.Component {
         </div>
       );
     } else {
-      return <h1>Tőtök</h1>
+      return(
+        <div className="container text-center align-middle">
+          <img src="https://flipanim.com/gif/9/c/9czwuOXy.gif"></img>
+        </div>
+      );
     }
   }
 }
