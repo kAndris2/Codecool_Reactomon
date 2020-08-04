@@ -4,14 +4,23 @@ import { Link } from "react-router-dom";
 class PokemonList extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      count: 0
+    }
 
     this.mapPokemonToTableRow = this.mapPokemonToTableRow.bind(this);
+    this.catchPokemon = this.catchPokemon.bind(this);
     this.catchPokemon = this.catchPokemon.bind(this);
   }
 
   catchPokemon(pokemon) {
     //const pokemon = this.props.pokemons.find((pokemon) => pokemon.id === parseInt(this.props.match.params.id, 10));
+    this.setState({count: this.state.count + 1});
     this.props.caught.push(pokemon);
+  }
+
+  caughtPokemon(pokemon) {
+    return this.props.caught.includes(pokemon);
   }
 
   render() {
@@ -47,7 +56,7 @@ class PokemonList extends React.Component {
         </td>
 
         <td className="text-center">
-          <button onClick={() => this.catchPokemon(pokemon)}>Catch em!</button>
+          {this.caughtPokemon(pokemon) == true ? <h6>Caught!</h6> : <button onClick={() => this.catchPokemon(pokemon)}>Catch!</button>}
         </td>
 
       </tr>
