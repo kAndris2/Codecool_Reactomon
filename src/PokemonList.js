@@ -81,7 +81,7 @@ class PokemonList extends React.Component {
               </Link>
             </p>
 
-            {this.caughtPokemon(pokemon) == true ? <h6>Caught!</h6> : <button onClick={() => this.catchPokemon(pokemon)}>Catch!</button>}
+            {this.caughtPokemon(pokemon) == true ? <h6><b><u>Caught!</u></b></h6> : <button onClick={() => this.catchPokemon(pokemon)}>Catch!</button>}
           </div>
       </div>
     )

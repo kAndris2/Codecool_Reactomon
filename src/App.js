@@ -11,6 +11,7 @@ import PokemonList from './PokemonList';
 import TypeList from './TypeList';
 import PokemonDetail from './PokemonDetail';
 import Caught from './Caught';
+import Error from './Error';
 import Pagination from './Pagination';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './theme';
@@ -26,13 +27,35 @@ class App extends React.Component {
       pokesPerPage: 15,
       currentPage: 1,
       theme: 'light',
-      caught: []
+      caught: [],
+      inputState: undefined,
+      search: undefined
     }
 
     this.handlePokemonListResponse = this.handlePokemonListResponse.bind(this);
     this.handlePokemonDetailsResponse = this.handlePokemonDetailsResponse.bind(this);
     this.fetchPokemons = this.fetchPokemons.bind(this);
     this.toggleTheme = this.toggleTheme.bind(this);
+    this.getSearchResult = this.getSearchResult.bind(this);
+  }
+
+  getSearchResult() {
+    const pokemon = isNaN(this.state.search) == false ? 
+      this.state.pokemons.find((pokemon) => pokemon.id == this.state.search)
+      :
+      this.state.pokemons.find((pokemon) => pokemon.name === this.state.search);
+
+    if (pokemon != undefined) {
+      let route = `/pokemons/${pokemon.id}`;
+      return (
+        <Redirect to={route} />
+      );
+    }
+    else {
+      return (
+        <Redirect to="/error" />
+      );
+    }
   }
 
   toggleTheme() {
@@ -118,7 +141,14 @@ class App extends React.Component {
                 </>
               </ThemeProvider>
 
+              <li className="nav-item">
+                <input onChange={(event) => {this.setState({inputState: event.target.value})}} placeholder="Enter your pokemon name"/>
+                <button onClick={() => {this.setState({search: this.state.inputState})}}>Get</button>
+              </li>
+
             </ul>
+
+            {this.state.search != undefined ? this.getSearchResult() : undefined}
 
             <Switch>
               <Redirect exact from="/" to="/pokemons" />
@@ -150,6 +180,10 @@ class App extends React.Component {
 
               <Route exact path="/caught">
                 <Caught pokemons={this.state.caught} />
+              </Route>
+
+              <Route exact path="/error">
+                <Error search={this.state.search} theme={this.state.theme}/>
               </Route>
 
               <Route path="/pokemons/:id" children={<PokemonDetail pokemons={this.state.pokemons} caught={this.state.caught} theme={this.state.theme}/>} />
