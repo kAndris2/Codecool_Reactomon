@@ -148,7 +148,7 @@ class App extends React.Component {
                 <Caught pokemons={this.state.caught} />
               </Route>
 
-              <Route path="/pokemons/:id" children={<PokemonDetail pokemons={this.state.pokemons}/>} />
+              <Route path="/pokemons/:id" children={<PokemonDetail pokemons={this.state.pokemons} caught={this.state.caught}/>} />
 
             </Switch>
           </Router>
