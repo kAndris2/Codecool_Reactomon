@@ -162,8 +162,9 @@ class App extends React.Component {
                 <div className="form-group mx-sm-3 mb-2">
                   <input onChange={(event) => {this.setState({inputState: event.target.value})}} placeholder="Enter your pokemon name" type="text" class="form-control" />
                 </div>
+                <button type="button" onClick={() => {this.setState({search: this.state.inputState})}}className="btn btn-primary mb-2">Get</button>
               </form>
-                <span className=""><button onClick={() => {this.setState({search: this.state.inputState})}}class="btn btn-primary mb-2">Get</button></span>
+              
               </div>
           </div>
           
