@@ -54,13 +54,23 @@ class PokemonDetail extends React.Component {
             </tr>
 
             <tr>
-              <td class="font-weight-bold">Weight</td>
+              <td class="font-weight-bold">Weight:</td>
               <td>{pokemon.weight}</td>
             </tr>
 
             <tr>
-              <td class="font-weight-bold">Type(s)</td>
+              <td class="font-weight-bold">Height:</td>
+              <td>{pokemon.height}</td>
+            </tr>
+
+            <tr>
+              <td class="font-weight-bold">Type(s):</td>
               <td>{pokemon.types.join(', ')}</td>
+            </tr>
+
+            <tr>
+              <td class="font-weight-bold">Moves:</td>
+              <td>{pokemon.moves.join(', ')}</td>
             </tr>  
 
           </table>

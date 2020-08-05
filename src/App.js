@@ -68,12 +68,19 @@ class App extends React.Component {
       typeList.push(slot.type.name);
     });
 
+    let movesList = [];
+    response.data.moves.forEach(item => {
+      movesList.push(item.move.name);
+    });
+
     return {
       id: response.data.id,
       name: response.data.name,
       image_url: response.data.sprites.front_default,
       weight: response.data.weight,
-      types: typeList
+      height: response.data.height,
+      types: typeList,
+      moves: movesList
     };
   }
 
