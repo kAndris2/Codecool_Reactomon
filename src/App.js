@@ -179,7 +179,7 @@ class App extends React.Component {
               </Route>
 
               <Route exact path="/caught">
-                <Caught pokemons={this.state.caught} />
+                <Caught pokemons={this.state.caught} theme={this.state.theme} />
               </Route>
 
               <Route exact path="/error">
