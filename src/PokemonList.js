@@ -77,18 +77,19 @@ class PokemonList extends React.Component {
     return (
     
       <div className="card" key={pokemon.id} style={this.props.theme == 'light' ? lightDiv : darkDiv}>
-        <img className="card-img-top" src={`${pokemon.image_url}`} alt="Card image cap"></img>
-          <div className="card-body">
-            {pokemon.name}
-        
-            <p>
-              <Link to={`/pokemons/${pokemon.id}`}>
-                Details
-              </Link>
-            </p>
 
-            {this.caughtPokemon(pokemon) == true ? <h6><b><u>Caught!</u></b></h6> : <button className="btn btn-secondary" onClick={() => this.catchPokemon(pokemon)}>Catch!</button>}
+        <Link to={`/pokemons/${pokemon.id}`}>
+          <img className="card-img-top" src={`${pokemon.image_url}`} alt="Card image cap"></img>
+          <div className="text-center">{pokemon.name}</div>
+        </Link>
+
+          <div className="card-body text-center">
+            {this.caughtPokemon(pokemon) == true ? 
+              <img width="35" height="35" src="https://png2.cleanpng.com/sh/c6b4887dd23f38dba4c5869c7ce9b164/L0KzQYm3U8I6N6NvfZH0aYP2gLBuTgRma5lzh954Z4mwcsPojvQua5p3e95uLYDye7bpgfxtNWZmetY6YUXnQoXsVcY5Nmo3T6YCMkm1QYa5UsM1OmUAS6MAMUGxgLBu/kisspng-technology-brand-circle-pokeball-5abd1a5d24e568.9274729215223424931511.png" />
+              : 
+              <button className="btn btn-secondary" onClick={() => this.catchPokemon(pokemon)}>Catch!</button>}
           </div>
+
       </div>
     )
   }
