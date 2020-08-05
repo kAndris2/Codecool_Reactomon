@@ -112,41 +112,58 @@ class App extends React.Component {
       return (
         <div className="container">
           <Router>
-            <ul className="nav nav-tabs" id="myTab" role="tablist">
+          <div class="row">
+              <div class="col-sm-6">
+                <ul className="nav nav-tabs" id="myTab" role="tablist">
+                  <li className="nav-item">
+                    <a className="nav-link active h5" id="pokemons-tab" aria-selected="true">
+                      <Link to="/pokemons">Pokemons</Link>
+                    </a>
+                  </li>
 
-              <li className="nav-item">
-                <a className="nav-link active h4" id="pokemons-tab" aria-selected="true">
-                  <Link to="/pokemons">Pokemons</Link>
-                </a>
-              </li>
+                  <li className="nav-item">
+                    <a className="nav-link h5" id="types-tab" aria-selected="false">
+                      <Link to="/types">Types</Link>
+                    </a>
+                  </li>
 
-              <li className="nav-item">
-                <a className="nav-link h4" id="types-tab" aria-selected="false">
-                  <Link to="/types">Types</Link>
-                </a>
-              </li>
+                  <li className="nav-item">
+                    <a className="nav-link h5" id="types-tab" aria-selected="false">
+                      <Link to="/caught">Caught</Link>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-sm-6">
+              
 
-              <li className="nav-item">
-                <a className="nav-link h4" id="types-tab" aria-selected="false">
-                  <Link to="/caught">Caught</Link>
-                </a>
-              </li>
-
+              <form className="form-inline">
               <ThemeProvider theme={this.state.theme === 'light' ? lightTheme : darkTheme}>
                 <>
                   <GlobalStyles />
-                  <button onClick={this.toggleTheme}>Toggle theme</button>
-                  <footer>
-                  </footer>
+                  <div class="theme-switch-wrapper">
+                    <label class="theme-switch" for="checkbox">
+                        <input onClick={this.toggleTheme} type="checkbox" id="checkbox" />
+                        <div class="slider round"></div>
+                    </label>
+                    <em>Enable Dark Mode!</em>
+                  </div>
+    
                 </>
               </ThemeProvider>
+                <div className="form-group mx-sm-3 mb-2">
+                  <input onChange={(event) => {this.setState({inputState: event.target.value})}} placeholder="Enter your pokemon name" type="text" class="form-control" />
+                </div>
+                <button onClick={() => {this.setState({search: this.state.inputState})}}class="btn btn-primary mb-2">Get</button>
+              </form>
+              </div>
+          </div>
+          
+            
 
-              <li className="nav-item">
-                <input onChange={(event) => {this.setState({inputState: event.target.value})}} placeholder="Enter your pokemon name"/>
-                <button onClick={() => {this.setState({search: this.state.inputState})}}>Get</button>
-              </li>
+              
 
-            </ul>
+           
 
             {this.state.search != undefined ? this.getSearchResult() : undefined}
 

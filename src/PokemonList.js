@@ -49,6 +49,10 @@ class PokemonList extends React.Component {
       if (this.props.pokemons.length > 0){
         this.getRows(5,this.props.pokemons);
       }
+
+      if (this.state.newArr.length === 0){
+        this.getRows(5,this.props.pokemons);
+      }
       
       return (
         <React.Fragment>
@@ -83,7 +87,7 @@ class PokemonList extends React.Component {
               </Link>
             </p>
 
-            {this.caughtPokemon(pokemon) == true ? <h6><b><u>Caught!</u></b></h6> : <button onClick={() => this.catchPokemon(pokemon)}>Catch!</button>}
+            {this.caughtPokemon(pokemon) == true ? <h6><b><u>Caught!</u></b></h6> : <button className="btn btn-secondary" onClick={() => this.catchPokemon(pokemon)}>Catch!</button>}
           </div>
       </div>
     )
