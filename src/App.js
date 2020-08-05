@@ -226,7 +226,7 @@ class App extends React.Component {
               width: "100%",
               left: "50%",
               top: "50%",
-              height: "110%",
+              height: "120%",
               objectFit: "cover",
               transform: "translate(-50%, -50%)",
               zIndex: "-1"
