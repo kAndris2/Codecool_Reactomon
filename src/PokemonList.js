@@ -25,19 +25,18 @@ class PokemonList extends React.Component {
     this.props.caught.push(pokemon);
   }
 
-  getRows(pokemonsperrow, pokemons){
-    let items = pokemons;
+  getRows(pokemonsperrow){
+    let items = [...this.props.pokemons];
     let n = pokemonsperrow //popkes per row
-
     let result = new Array(Math.ceil(items.length / n))
-    .fill()
+    .fill() 
     .map(_ => items.splice(0, n));
-
-    this.setState({newArr: result,totve:true});
+    
+    this.setState({newArr: result, totve:true});
   }
 
   componentDidMount(){
-    this.getRows(5,this.props.pokemons);
+    this.getRows(5);
   
   }
   caughtPokemon(pokemon) {
@@ -46,14 +45,16 @@ class PokemonList extends React.Component {
 
   render() {
     if (this.state.totve){
-      if (this.props.pokemons.length > 0){
-        this.getRows(5,this.props.pokemons);
+      
+      if (this.props.pokemons[0] !== this.state.newArr[0][0]){
+        this.getRows(5);
       }
 
       if (this.state.newArr.length === 0){
-        this.getRows(5,this.props.pokemons);
+        this.getRows(5);
       }
-      
+      console.log(this.props.pokemons[0]);
+      console.log(this.state.newArr[0][0]);
       return (
         <React.Fragment>
           <div className="card-deck">
