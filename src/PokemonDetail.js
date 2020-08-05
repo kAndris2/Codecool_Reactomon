@@ -42,6 +42,7 @@ class PokemonDetail extends React.Component {
 
         <div className="container-fluid" style={this.props.theme == 'light' ? lightDiv : darkDiv}>
           <img src={pokemon.image_url} />
+          <img src={pokemon.back_image_url} />
           <h1>{pokemon.name}</h1>
           {this.caughtPokemon(pokemon) == true ? <h6>You are already own this pokemon!</h6> : 
           <button onClick={() => this.catchPokemon(pokemon)}>Catch!</button>}

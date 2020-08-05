@@ -77,6 +77,7 @@ class App extends React.Component {
       id: response.data.id,
       name: response.data.name,
       image_url: response.data.sprites.front_default,
+      back_image_url: response.data.sprites.back_default,
       weight: response.data.weight,
       height: response.data.height,
       types: typeList,
