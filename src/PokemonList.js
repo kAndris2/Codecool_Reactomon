@@ -53,8 +53,7 @@ class PokemonList extends React.Component {
       if (this.state.newArr.length === 0){
         this.getRows(5);
       }
-      console.log(this.props.pokemons[0]);
-      console.log(this.state.newArr[0][0]);
+      
       return (
         <React.Fragment>
           <div className="card-deck">

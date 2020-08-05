@@ -163,7 +163,7 @@ class App extends React.Component {
                   <input onChange={(event) => {this.setState({inputState: event.target.value})}} placeholder="Enter your pokemon name" type="text" class="form-control" />
                 </div>
               </form>
-                <button onClick={() => {this.setState({search: this.state.inputState})}}class="btn btn-primary mb-2">Get</button>
+                <span className=""><button onClick={() => {this.setState({search: this.state.inputState})}}class="btn btn-primary mb-2">Get</button></span>
               </div>
           </div>
           
@@ -190,6 +190,7 @@ class App extends React.Component {
                       pokesPerPage={this.state.pokesPerPage}
                       totalPokes={this.state.pokemons.length}
                       paginate={paginate}
+                      currPage={this.state.currentPage}
                     />
                   </div>
 
