@@ -73,6 +73,11 @@ class App extends React.Component {
       movesList.push(item.move.name);
     });
 
+    let abilityList = [];
+    response.data.abilities.forEach(item => {
+      abilityList.push(item.ability.name);
+    })
+
     return {
       id: response.data.id,
       name: response.data.name,
@@ -81,6 +86,7 @@ class App extends React.Component {
       weight: response.data.weight,
       height: response.data.height,
       types: typeList,
+      abilities: abilityList,
       moves: movesList
     };
   }
