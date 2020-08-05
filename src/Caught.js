@@ -6,35 +6,12 @@ class Caught extends React.Component {
     constructor(props) {
         super(props);
 
-        this.mapRows = this.mapRows.bind(this);
         this.mapPokemons = this.mapPokemons.bind(this);
         this.countPokemons = this.countPokemons.bind(this);
-        this.managePokemons = this.managePokemons.bind(this);
     }
-
-    managePokemons(){
-        let pokemons = this.props.pokemons;
-        let n = 3;
-    
-        let result = new Array(Math.ceil(pokemons.length / n))
-        .fill()
-        .map(_ => pokemons.splice(0, n));
-    
-        return result;
-      }
 
     countPokemons() {
         return this.props.pokemons.length;
-    }
-
-    mapRows(row) {
-        return (
-            <>
-                <div className="row">
-                    {row.map(this.mapPokemons)}
-                </div>
-            </>
-        );
     }
 
     mapPokemons(pokemon) {
@@ -44,19 +21,19 @@ class Caught extends React.Component {
                 <div className="col">
                     <Link to={link}>
                         <img src={pokemon.image_url}></img>
-                        {pokemon.name}
+                        <p>{pokemon.name}</p>
                     </Link>
                 </div>
             </>
         );
     }
-
+    
     render () {
         if (this.countPokemons() >= 1) {
             return (
                 <>
-                    <div style={this.props.theme == 'light' ? lightDiv : darkDiv}>
-                        {this.managePokemons().map(this.mapRows)}
+                    <div className="row" style={this.props.theme == 'light' ? lightDiv : darkDiv}>
+                        {this.props.pokemons.map(this.mapPokemons)}
                     </div>
                 </>
             );
