@@ -12,7 +12,7 @@ class PokemonList extends React.Component {
       totve: false,
       thm: this.props.theme
     }
-
+    
     this.mapPokemonToTableRow = this.mapPokemonToTableRow.bind(this);
     this.catchPokemon = this.catchPokemon.bind(this);
     this.catchPokemon = this.catchPokemon.bind(this);
@@ -25,8 +25,8 @@ class PokemonList extends React.Component {
     this.props.caught.push(pokemon);
   }
 
-  getRows(pokemonsperrow){
-    let items = this.props.pokemons;
+  getRows(pokemonsperrow, pokemons){
+    let items = pokemons;
     let n = pokemonsperrow //popkes per row
 
     let result = new Array(Math.ceil(items.length / n))
@@ -37,16 +37,18 @@ class PokemonList extends React.Component {
   }
 
   componentDidMount(){
-    this.getRows(5);
+    this.getRows(5,this.props.pokemons);
+  
   }
   caughtPokemon(pokemon) {
     return this.props.caught.includes(pokemon);
   }
 
   render() {
-   
-    
     if (this.state.totve){
+      if (this.props.pokemons.length > 0){
+        this.getRows(5,this.props.pokemons);
+      }
       
       return (
         <React.Fragment>
