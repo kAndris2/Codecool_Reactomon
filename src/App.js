@@ -117,6 +117,7 @@ class App extends React.Component {
     })
   }
   render() {
+    console.log("!!!!!!!!!!!");
     if (this.state.loaded) {
       const paginate = pageNumber => this.setCurrentPage(pageNumber);
       const indexOfLastPokes = this.state.currentPage * this.state.pokesPerPage;
@@ -239,7 +240,7 @@ class App extends React.Component {
               zIndex: "-1"
             }}
           >
-            <source src="https://r9---sn-h5bt5guxax3vh-c0qe7.googlevideo.com/videoplayback?expire=1596659324&ei=HMIqX9iKKu7Z-gbbupuQAw&ip=2a0f:3d80:a8a1:3a4e:917d:642:a6f4:3d1e&id=o-AFE46PP38pl_-tSICGq57buFINJB_oF5rTQ34SamJ31w&itag=18&source=youtube&requiressl=yes&vprv=1&mime=video/mp4&gir=yes&clen=4608324&ratebypass=yes&dur=60.209&lmt=1575871229256498&fvip=3&fexp=23883098&c=WEB&txp=5431432&sparams=expire,ei,ip,id,itag,source,requiressl,vprv,mime,gir,clen,ratebypass,dur,lmt&sig=AOq0QJ8wRQIhAISDfdpAg8lMUt-QCFsfKATExSpNalGYYHblf4e2TVCEAiAjl_oftA7fXzsX_gpJAVqYGHIbwqV8_ats2zO8AvN-FA==&title=Pok%C3%A9mon%20Season%201:%20Indigo%20-VideoIndirelim.com&redirect_counter=1&rm=sn-5hnk77d&req_id=e3b15e23d0d2a3ee&cms_redirect=yes&ipbypass=yes&mh=o6&mip=2001:4c4e:1a06:e611:92b:af1f:888b:241c&mm=31&mn=sn-h5bt5guxax3vh-c0qe7&ms=au&mt=1596637553&mv=u&mvi=9&pl=29&lsparams=ipbypass,mh,mip,mm,mn,ms,mv,mvi,pl&lsig=AG3C_xAwRQIgXSQS-ejIfl0zTAuKUSRVXFLRJ-JrTW1SkrmE5-iK7CICIQDPjEPgb3aRZnVYVKhyUWO_fvuMvTTizDQILwipPM01xQ%3D%3D" />
+            <source src="https://r9---sn-h5bt5guxax3vh-c0qe7.googlevideo.com/videoplayback?expire=1596717837&ei=raYrX-rAFdmSgQfP04i4AQ&ip=2a0f:3d80:bb4e:c3f7:c606:34be:fd24:1455&id=o-AB7U8ZI882ojnQ4RqSzrZRSTzeIX0k_CNzbyK3LenSK2&itag=18&source=youtube&requiressl=yes&vprv=1&mime=video/mp4&gir=yes&clen=4608324&ratebypass=yes&dur=60.209&lmt=1575871229256498&fvip=3&fexp=9466585,23883098&beids=9466585&c=WEB&txp=5431432&sparams=expire,ei,ip,id,itag,source,requiressl,vprv,mime,gir,clen,ratebypass,dur,lmt&sig=AOq0QJ8wRQIgSlnNaM5mqeaGJVAurjKgadcCWZmfWIp6byZjCmqdWNkCIQCrJCDCWQH1FrVxeNsHvPH2OINbNSdFSUfWBehKogkO4A==&title=Pok%C3%A9mon%20Season%201:%20Indigo%20-VideoIndirelim.com&redirect_counter=1&rm=sn-5hnk77d&req_id=ff760d54c6b9a3ee&cms_redirect=yes&ipbypass=yes&mh=o6&mip=81.182.249.70&mm=31&mn=sn-h5bt5guxax3vh-c0qe7&ms=au&mt=1596696211&mv=m&mvi=9&pl=20&lsparams=ipbypass,mh,mip,mm,mn,ms,mv,mvi,pl&lsig=AG3C_xAwRQIhALS0etTClJ-Nw7czUrgsGIY6OaL8CxJm7HF2kP9aDPanAiB-4UYBRjjwTylFZ5ITSzPFuWSfdJVyqGF8VYrYzwPvmw%3D%3D" />
           </video>
 
         </div>
